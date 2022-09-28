@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // remove any trace of a tetromino from the entire grid
         square.classList.remove('tetromino')
     })
-    upNextTetrominoes[nextRandom].forEach(index => {
+    upNextTetrominoes[nextRandom].forEach( index => {
         displaySquares[displayIndex + index].classList.add('tetromino')
     })
   }
