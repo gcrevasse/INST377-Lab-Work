@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //add functionality to the buttonj
   startBtn.addEventListener('click', () => {
-    if (timerID) {
+    if (timerId) {
         clearInterval(timerId)
         timerId = null
     } else {
