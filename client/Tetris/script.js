@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid');
   const scoreDisplay = document.querySelector('#score');
   const startBtn = document.querySelector('#start-button');
-  let squares = document.querySelectorAll('.grid div');
+  let squares = Array.from(document.querySelectorAll('.grid div'));
   let nextRandom = 0;
   let timerId;
   let score = 0;
