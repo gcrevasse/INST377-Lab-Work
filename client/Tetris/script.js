@@ -131,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1)
 
         if(!isAtRightEdge) currentPosition += 1
+
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -= 1
+        }
+        draw()
     }
 
 
