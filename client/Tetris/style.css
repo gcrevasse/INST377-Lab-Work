@@ -7,7 +7,7 @@
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: plum;
+    background-color: rgb(238, 163, 255);
 
 }
 
@@ -18,7 +18,7 @@
 }
 
 .tetromino {
-    background-color: blue;
+    background-color: rgb(35, 107, 69);
 }
 
 .mini-grid {
@@ -27,7 +27,7 @@
     height: 80px;
     display: flex;
     flex-wrap: wrap;
-    background-color: plum;
+    background-color: rgb(232, 154, 246);
 }
 
 .mini-grid div {
