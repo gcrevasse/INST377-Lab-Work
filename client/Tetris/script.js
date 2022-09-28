@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (current.some((index) => squares[currentPosition + index + width].classList.contains('taken'))) {
       current.forEach((index) => squares[currentPosition + index].classList.add('taken'));
       // start a new tetromino falling
-      random = nextRandom
+      random = nextRandom;
       nextRandom = Math.floor(Math.random() * tetrominoShapes.length);
       current = tetrominoShapes[random][currentRotation];
       currentPosition = 4;
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //show up next tetromino in mini-grid display
-  const displaySquares = document.querySelectorAll('.mini')
+  const displaySquares = document.querySelectorAll('.mini-grid div')
   const displayWidth = 4
   let displayIndex = 0
   
