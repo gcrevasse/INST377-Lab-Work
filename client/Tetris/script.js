@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const width = 10;
+  
   const grid = document.querySelector('.grid');
+  let squares = Array.from(document.querySelectorAll('.grid div'));
   const scoreDisplay = document.querySelector('#score');
   const startBtn = document.querySelector('#start-button');
-  let squares = Array.from(document.querySelectorAll('.grid div'));
+  const width = 10;
   let nextRandom = 0;
   let timerId;
   let score = 0;
@@ -195,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.innerHTML = score;
         row.forEach((index) => {
           squares[index].classList.remove('taken');
+          squares[index].classList.remove('tetromino')
         });
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
