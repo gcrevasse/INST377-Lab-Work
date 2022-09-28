@@ -70,13 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //make tetromino move down
-    timerID = setInterval(moveDown, 200);
+    timerID = setInterval(moveDown, 1000);
 
     //move down function
     function moveDown() {
         undraw();
         currentPosition += width;
         draw();
+        freeze()
     }
 
     //freeze function
