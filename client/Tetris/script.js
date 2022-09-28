@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // make tetromino move down
-  timerID = setInterval(moveDown, 500);
+  timerID = setInterval(moveDown, 200);
 
   // assign functions to keyCodes
   function control(e) {
@@ -89,10 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
       current.forEach((index) => squares[currentPosition + index].classList.add('taken'));
       // start a new tetromino falling
       random = nextRandom
-      random = Math.floor(Math.random() * tetrominoShapes.length);
+      nextRandom = Math.floor(Math.random() * tetrominoShapes.length);
       current = tetrominoShapes[random][currentRotation];
       currentPosition = 4;
       draw();
+      displayShape()
     }
   }
 
@@ -165,7 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // remove any trace of a tetromino from the entire grid
         square.classList.remove('tetromino')
     })
-    upNextTetrominoes[nextRandom]
+    upNextTetrominoes[nextRandom].forEach(index => {
+        displaySquares[displayIndex + index].classList.add('tetromino')
+    })
   }
 
 
