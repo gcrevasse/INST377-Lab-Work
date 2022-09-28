@@ -22,7 +22,7 @@
 }
 
 .mini-grid {
-    margin: 50px;
+    margin-left: 50px;
     width: 80px;
     height: 80px;
     display: flex;
