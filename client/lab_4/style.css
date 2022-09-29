@@ -131,7 +131,7 @@ form {
   margin: 1rem;
   align-items: center;
   max-width: 450px;
-  flex-direction: column;
+  flex-flow: column;
   
 }
 
