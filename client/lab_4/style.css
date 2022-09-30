@@ -67,13 +67,14 @@ form {
 }
 
 .header {
+  border: 2px dashed;
+  border-radius: 4px;
    padding-top: .2rem;
   padding-left: .2rem;
   padding-right: .2rem;
   padding-bottom: .2rem; 
   
-  border: 2px dashed;
-  border-radius: 4px;
+  
 }
 
 
