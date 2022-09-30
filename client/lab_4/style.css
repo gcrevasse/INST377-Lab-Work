@@ -140,6 +140,7 @@ form {
   flex: 0 1 auto;
   margin: 1rem;
   padding: 1.5rem;
+  flex-grow: 1;
 }
 
 .right_section {
@@ -150,7 +151,7 @@ form {
   max-width: 450px;
   display: flex;
   flex-flow: column;
-  
+  flex-grow: 2;
 }
 
 /*
