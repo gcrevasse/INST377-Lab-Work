@@ -127,12 +127,12 @@ form {
 
 
 .left_section {
-  flex-grow: 1;
+ 
   background-color: rgba(0, 139, 139, 0.8);
   flex: 0 1 auto; 
   margin: 1rem;
   padding: 1.5rem;
-  
+  flex-grow: 1;
  
 }
 
