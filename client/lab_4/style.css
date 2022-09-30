@@ -46,9 +46,9 @@ form {
   - like this: <div class="wrapper">
   - note that the period vanishes there!
 */
-div {
+/* div {
   border: 2px dashed black;
-}
+} */
 
 .wrapper {
   min-height: 100vh;
@@ -67,9 +67,9 @@ div {
 }
 
 .header {
-  padding-top: 1rem;
+  /* padding-top: 1rem;
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 1rem; */
   padding-bottom: 1.5rem;
 }
 
@@ -120,15 +120,15 @@ div {
   margin: 0 auto;
 }
 
-/* .box header{
+.box header{
   background-color: rgba(239, 239, 239, 0.40);
   border: 2px dashed;
   border-radius: 4px;
 
-  width: ;
+  /*width: ;*/
   height:fit-content;
   margin: 0 auto;
-} */
+}
 
 .left_section {
   background-color: rgba(0, 139, 139, 0.8);
