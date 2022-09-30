@@ -145,7 +145,7 @@ form {
   max-width: 450px;
   display: flex;
   flex-flow: column;
-  
+  flex-grow: 2;
   
 }
 
