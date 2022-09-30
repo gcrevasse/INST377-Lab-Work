@@ -46,7 +46,9 @@ form {
   - like this: <div class="wrapper">
   - note that the period vanishes there!
 */
-
+div {
+  border: 2px dashed black;
+}
 
 .wrapper {
   min-height: 100vh;
@@ -117,6 +119,16 @@ form {
   padding: 1.5rem;
   margin: 0 auto;
 }
+
+/* .box header{
+  background-color: rgba(239, 239, 239, 0.40);
+  border: 2px dashed;
+  border-radius: 4px;
+
+  width: ;
+  height:fit-content;
+  margin: 0 auto;
+} */
 
 .left_section {
   background-color: rgba(0, 139, 139, 0.8);
