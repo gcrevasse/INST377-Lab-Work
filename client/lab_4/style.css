@@ -92,8 +92,8 @@ form {
   color: #4a4a4a;
 
   /* shapes */
-  border: 2px dashed;
-  border-radius: 4px;
+  border: 4px dashed;
+  border-radius: 6px;
   
   font-size: 1.5rem;
   padding: 1.25rem;
