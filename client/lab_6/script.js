@@ -18,19 +18,18 @@ function getRandomIntInclusive(min, max) {
 
 function injectHTML(list) {
   console.log('fired injectHTML');
-  const target = document.querySelector("#restaurant_list");
-  target.innerHTML='';
+  const target = document.querySelector('#restaurant_list');
+  target.innerHTML = '';
 
-  const listEl = document.createElement('ol');
+  const listEl = document.createElement('ul');
   target.appendChild(listEl);
 
-
-  list.forEach(item => {
+  list.forEach((item) => {
     const el = document.createElement('li');
     el.innerText = item.name;
     listEl.appendChild(el);
-    //const str = `<li>${item.name} </li>`;
-    //target.innerHTML += str;
+    // const str = `<li>${item.name} </li>`;
+    // target.innerHTML += str;
   });
   /*
   ## JS and HTML Injection
@@ -55,8 +54,11 @@ function processRestaurants(list) {
     const index = getRandomIntInclusive(0, list.length);
     return list[index];
   });
+  /*newArray.forEach((item) => {
+
+  });*/
   return newArray;
-  
+
   /*
     ## Process Data Separately From Injecting It
       This function should accept your 1,000 records
@@ -88,7 +90,7 @@ async function mainEvent() {
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
-  const loadAnimation = document.querySelector('.lds-ellipsis'); //get a reference to our loading animation
+  const loadAnimation = document.querySelector('.lds-ellipsis'); // get a reference to our loading animation
   submit.style.display = 'none'; // let your submit button disappear
 
   /*
@@ -105,7 +107,7 @@ async function mainEvent() {
     Dot notation is preferred in JS unless you have a good reason to use brackets
     The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
   */
-  //console.table(arrayFromJson.data);
+  // console.table(arrayFromJson.data);
 
   // in your browser console, try expanding this object to see what fields are available to work with
   // for example: arrayFromJson.data[0].name, etc
@@ -118,7 +120,7 @@ async function mainEvent() {
   if (arrayFromJson.data?.length > 0) { // the question mark in this means "if this is set at all"
     submit.style.display = 'block'; // let's turn the submit button back on by setting it to display as a block when we have data available
 
-    //Lets hide the load bytton now that we have data to manipulate
+    // Lets hide the load bytton now that we have data to manipulate
     loadAnimation.classList.remove('lds-ellipsis');
     loadAnimation.classList.add('lds-ellipsis_hidden');
     // And here's an eventListener! It's listening for a "submit" button specifically being clicked
