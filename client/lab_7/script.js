@@ -78,14 +78,16 @@ function processRestaurants(list) {
       - Return the new list of 15 restaurants so we can work on it separately in the HTML injector
     */
 }
-function filterList(array, filterInputValue) {
-  return array.filter((item) => {
+function filterList(list, filterInputValue) {
+  return list.filter((item) => {
+    if (!item.name) {
+      return;
+    }
     const lowerCaseName = item.name.toLowerCase();
     const lowerCaseQuery = filterInputValue.toLowerCase();
     return lowerCaseName.includes(lowerCaseQuery);
   });
 }
-
 async function mainEvent() {
   /*
       ## Main Event
@@ -135,10 +137,9 @@ async function mainEvent() {
   loadAnimation.classList.remove('lds-ellipsis');
   loadAnimation.classList.add('lds-ellipsis_hidden');
 
-  form.addEventListener('input ', (event) => {
-    console.log('input', event.target.value);
-    const newFilteredList = filterList(arrayFromJson.data, event.target.value);
-    
+  form.addEventListener('input', (event) => {
+    console.log(event.target.value);
+    const newFilteredList = filterList(currentList, event.target.value);
     injectHTML(newFilteredList);
   });
 
