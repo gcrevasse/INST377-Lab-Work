@@ -360,6 +360,15 @@ html {
     These rules apply to actual HTML elements with no labelling!
     So: they style the tags directly
   */
+  /*Map Stlye*/
+ 
+  #map { 
+    display: block;
+    height: 380px; 
+    width: 400px;
+    border: 2px dashed rgb(15, 14, 14);
+    margin-bottom: 1rem;
+  }
   
   
   /* 

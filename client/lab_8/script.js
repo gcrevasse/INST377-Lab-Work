@@ -88,6 +88,36 @@ function filterList(list, filterInputValue) {
     return lowerCaseName.includes(lowerCaseQuery);
   });
 }
+
+function initMap() {
+  console.log('initMap');
+  const map = L.map('map').setView([38.945787, -76.733979], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  return map;
+}
+
+function markerPlace(array, map) {
+  console.log('markerPlace', array);
+  //const marker = L.marker([51.5, -0.09]).addTo(map);
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+  array.forEach((item, index) => {
+    const {coordinates} = item.geocoded_column_1;
+    L.marker([coordinates[1], coordinates[0]]).addTo(map);
+    if (index === 0) {
+        map.setView([coordinates[1], coordinates[0]], 10);
+    }
+  });
+}
+
+
+
 async function mainEvent() {
   /*
         ## Main Event
@@ -95,7 +125,7 @@ async function mainEvent() {
           When you're not working in a heavily-commented "learning" file, this also is more legible
           If you separate your work, when one piece is complete, you can save it and trust it
       */
-
+  const pageMap = initMap();
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
@@ -141,6 +171,7 @@ async function mainEvent() {
     console.log(event.target.value);
     const newFilteredList = filterList(currentList, event.target.value);
     injectHTML(newFilteredList);
+    markerPlace(newFilteredList, pageMap);
   });
 
   // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -155,7 +186,7 @@ async function mainEvent() {
 
     // And this function call will perform the "side effect" of injecting the HTML list for you
     injectHTML(currentList);
-
+    markerPlace(currentList, pageMap);
     // By separating the functions, we open the possibility of regenerating the list
     // without having to retrieve fresh data every time
     // We also have access to some form values, so we could filter the list based on name
