@@ -101,7 +101,7 @@ function initMap() {
 
 function markerPlace(array, map) {
   console.log('markerPlace', array);
-  //const marker = L.marker([51.5, -0.09]).addTo(map);
+  // const marker = L.marker([51.5, -0.09]).addTo(map);
   map.eachLayer((layer) => {
     if (layer instanceof L.Marker) {
       layer.remove();
@@ -111,11 +111,43 @@ function markerPlace(array, map) {
     const {coordinates} = item.geocoded_column_1;
     L.marker([coordinates[1], coordinates[0]]).addTo(map);
     if (index === 0) {
-        map.setView([coordinates[1], coordinates[0]], 10);
+      map.setView([coordinates[1], coordinates[0]], 10);
     }
   });
 }
 
+function initChart(chart) {
+  const ctx = document.getElementById('myChart');
+  return new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+
+async function getData() {
+  const url = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'; // remote URL! you can test it in your browser
+  const data = await fetch(url); // We're using a library that mimics a browser 'fetch' for simplicity
+  const json = await data.json(); // the data isn't json until we access it using dot notation
+
+  const reply = json.filter(item => Boolean(item.geocoded_column_1)).filter(item => Boolean(item.name));
+  return reply;
+
+}
 
 
 async function mainEvent() {
@@ -125,11 +157,12 @@ async function mainEvent() {
           When you're not working in a heavily-commented "learning" file, this also is more legible
           If you separate your work, when one piece is complete, you can save it and trust it
       */
-  const pageMap = initMap();
+  // const pageMap = initMap();
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
   const loadAnimation = document.querySelector('.lds-ellipsis'); // get a reference to our loading animation
+  const chartTarget = document.querySelector('#myChart');
   submit.style.display = 'none'; // let your submit button disappear
 
   /*
@@ -140,6 +173,9 @@ async function mainEvent() {
   const results = await fetch('/api/foodServicePG');
   const arrayFromJson = await results.json(); // here is where we get the data from our request as JSON
 
+
+  initChart(chartTarget);
+  const chartData = await getData();
   /*
         Below this comment, we log out a table of all the results using "dot notation"
         An alternate notation would be "bracket notation" - arrayFromJson["data"]
@@ -171,7 +207,7 @@ async function mainEvent() {
     console.log(event.target.value);
     const newFilteredList = filterList(currentList, event.target.value);
     injectHTML(newFilteredList);
-    markerPlace(newFilteredList, pageMap);
+    // markerPlace(newFilteredList, pageMap);
   });
 
   // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -186,7 +222,7 @@ async function mainEvent() {
 
     // And this function call will perform the "side effect" of injecting the HTML list for you
     injectHTML(currentList);
-    markerPlace(currentList, pageMap);
+   // markerPlace(currentList, pageMap);
     // By separating the functions, we open the possibility of regenerating the list
     // without having to retrieve fresh data every time
     // We also have access to some form values, so we could filter the list based on name
