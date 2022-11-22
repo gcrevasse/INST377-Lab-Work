@@ -138,17 +138,14 @@ function initChart(chart) {
   });
 }
 
-
 async function getData() {
   const url = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'; // remote URL! you can test it in your browser
   const data = await fetch(url); // We're using a library that mimics a browser 'fetch' for simplicity
   const json = await data.json(); // the data isn't json until we access it using dot notation
 
-  const reply = json.filter(item => Boolean(item.geocoded_column_1)).filter(item => Boolean(item.name));
+  const reply = json.filter((item) => Boolean(item.geocoded_column_1)).filter((item) => Boolean(item.name));
   return reply;
-
 }
-
 
 async function mainEvent() {
   /*
@@ -173,25 +170,9 @@ async function mainEvent() {
   const results = await fetch('/api/foodServicePG');
   const arrayFromJson = await results.json(); // here is where we get the data from our request as JSON
 
-
   initChart(chartTarget);
   const chartData = await getData();
-  /*
-        Below this comment, we log out a table of all the results using "dot notation"
-        An alternate notation would be "bracket notation" - arrayFromJson["data"]
-        Dot notation is preferred in JS unless you have a good reason to use brackets
-        The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
-      */
-  // console.table(arrayFromJson.data);
 
-  // in your browser console, try expanding this object to see what fields are available to work with
-  // for example: arrayFromJson.data[0].name, etc
-  console.log(arrayFromJson.data[0]);
-
-  // this is called "string interpolation" and is how we build large text blocks with variables
-  console.log(`${arrayFromJson.data[0].name} ${arrayFromJson.data[0].category}`);
-
-  // This IF statement ensures we can't do anything if we don't have information yet
   if (!arrayFromJson.data?.length) {
     return;
   } // the question mark in this means "if this is set at all"
@@ -217,12 +198,12 @@ async function mainEvent() {
     submitEvent.preventDefault();
 
     // This constant will have the value of your 15-restaurant collection when it processes
-    currentList = processRestaurants(arrayFromJson.data);
+    currentList = processRestaurants(chartData);
     console.log(currentList);
 
     // And this function call will perform the "side effect" of injecting the HTML list for you
     injectHTML(currentList);
-   // markerPlace(currentList, pageMap);
+    // markerPlace(currentList, pageMap);
     // By separating the functions, we open the possibility of regenerating the list
     // without having to retrieve fresh data every time
     // We also have access to some form values, so we could filter the list based on name
